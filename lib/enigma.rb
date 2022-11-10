@@ -4,6 +4,10 @@ class Enigma
     set = ('a'..'z').to_a
     set.push('')
   end
+
+  def split(string)
+    string.split('')
+  end
   
   def encrpyt
   end
