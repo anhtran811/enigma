@@ -15,6 +15,9 @@ class Enigma
   def generate_keys
     @numbers.sample(5).join
   end
+  
+  def split_keys(key)
+  end
 
   def generate_offset(date)
     date_squared_last_four_numbers = ((date.to_i)**2).to_s[-4..-1]
@@ -23,8 +26,8 @@ class Enigma
     end
     offsets
   end
-  
-  def split_keys
+
+  def shift
   end
 
   def encrpyt
