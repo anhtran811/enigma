@@ -22,16 +22,23 @@ RSpec.describe Enigma do
   end
 
   it 'can split the five digit key' do
-    allow(enigma).to receive(:generate_keys).and_return("02715")
+    allow(enigma).to receive(:generate_keys).and_return('02715')
 
-    expect(enigma.split_keys("02715")).to eq(['02', '27', '71', '15'])
+    expect(enigma.split_keys('02715')).to eq(['02', '27', '71', '15'])
   end
 
   it 'can generate an offset from a given date' do
-    expect(enigma.generate_offset("040895")).to eq([1, 0, 2, 5])
+    expect(enigma.generate_offset('040895')).to eq([1, 0, 2, 5])
   end
 
-  xit 'can create a shift' do
+  it 'can create a shift' do
+    expect(enigma.shift(['02', '27', '71', '15'], [1, 0, 2, 5])).to eq({
+      A: 3,
+      B: 27,
+      C: 73,
+      D: 20
+    })
+
   end
 
   xit 'can encrpyt a message with a key and date' do

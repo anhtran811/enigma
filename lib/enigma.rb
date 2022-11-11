@@ -14,6 +14,7 @@ class Enigma
 
   def generate_keys
     @numbers.sample(5).join
+    require 'pry'; binding.pry
   end
   
   def split_keys(key)
@@ -35,7 +36,7 @@ class Enigma
     offsets
   end
 
-  def shift
+  def shift(keys, offsets)
   end
 
   def encrpyt
