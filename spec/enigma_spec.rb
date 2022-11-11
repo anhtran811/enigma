@@ -38,7 +38,6 @@ RSpec.describe Enigma do
       C: 73,
       D: 20
     })
-
   end
 
   it 'can encrpyt a message with a key and date' do

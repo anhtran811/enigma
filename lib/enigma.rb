@@ -69,13 +69,14 @@ class Enigma
     
       shifted_letter_collector += the_shift 
       shift_numbers.rotate!
-
-      # encrypt_hash = {}
-
-      # encrypt_hash[:encryption]: 
-
     end
     shifted_letter_collector
+    encryption_hash = {}
+  
+    encryption_hash[:encryption] = shifted_letter_collector
+    encryption_hash[:key] = option_key
+    encryption_hash[:date] = option_date
+    encryption_hash
   end
 
   def decrypt
