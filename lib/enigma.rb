@@ -1,6 +1,6 @@
 class Enigma
   attr_reader :numbers
-              :charaters
+              :characters
 
   def initialize
     @numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -12,14 +12,21 @@ class Enigma
     set.push(' ')
   end
 
-  # def split(string)
-  #   string.split('')
-  # end
-
-  def generator
+  def generate_keys
     @numbers.sample(5).join
   end
+
+  def generate_offset(date)
+    date_squared_last_four_numbers = ((date.to_i)**2).to_s[-4..-1]
+    offsets = date_squared_last_four_numbers.split('').map do |number|
+      number.to_i
+    end
+    offsets
+  end
   
+  def split_keys
+  end
+
   def encrpyt
   end
 

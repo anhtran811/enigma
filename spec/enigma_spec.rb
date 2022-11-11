@@ -12,17 +12,20 @@ RSpec.describe Enigma do
     expect(enigma.characters).to eq(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '])
   end
 
-  # it 'can split up a message' do
-  #   expect(enigma.split('hello')).to eq(['h', 'e', 'l', 'l', 'o'])
-  # end
-
-  it 'can create a random five digit number' do
-    key = enigma.generator.split('')
+  it 'can generate a random five digit key' do
+    key = enigma.generate_keys.split('')
     key.each do |number|
       expect(enigma.numbers).to include(number)
     end
     expect(key.count).to eq(5)
-    expect(enigma.generator.class).to eq(String)
+    expect(enigma.generate_keys.class).to eq(String)
+  end
+
+  xit 'can split the five digit key' do
+  end
+
+  it 'can create an offset from a date' do
+    expect(enigma.generate_offset("040895")).to eq([1, 0, 2, 5])
   end
 
   xit 'can encrpyt a message with a key and date' do
