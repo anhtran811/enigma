@@ -17,6 +17,14 @@ class Enigma
   end
   
   def split_keys(key)
+    split_key_hash = {}
+    # generate_keys.split('')
+    keys = key.split('')
+    split_key_hash[:A] = keys[0] + keys[1]
+    split_key_hash[:B] = keys[1] + keys[2]
+    split_key_hash[:C] = keys[2] + keys[3]
+    split_key_hash[:D] = keys[3] + keys[4]
+    split_key_hash.values
   end
 
   def generate_offset(date)
