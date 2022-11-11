@@ -9,14 +9,22 @@ RSpec.describe Enigma do
   end
 
   it 'has characters to choose from' do
-    expect(enigma.characters).to eq(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ''])
+    expect(enigma.characters).to eq(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '])
   end
 
-  it 'can split up a message' do
-    expect(enigma.split('hello')).to eq(['h', 'e', 'l', 'l', 'o'])
+  # it 'can split up a message' do
+  #   expect(enigma.split('hello')).to eq(['h', 'e', 'l', 'l', 'o'])
+  # end
+
+  it 'can create a random five digit number' do
+    key = enigma.generator.split('')
+    key.each do |number|
+      expect(enigma.numbers).to include(number)
+    end
+    expect(key.count).to eq(5)
+    expect(enigma.generator.class).to eq(String)
   end
 
-  
   xit 'can encrpyt a message with a key and date' do
     expect(enigma.encrypt('hello world', '02715', '040895')).to be(
       {
