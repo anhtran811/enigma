@@ -1,3 +1,5 @@
+require 'date'
+
 class Enigma
   attr_reader :numbers
               :characters
@@ -13,8 +15,10 @@ class Enigma
   end
 
   def generate_keys
+    # regex? -> look at number set
+    # or range
+    # or rand
     @numbers.sample(5).join
-    require 'pry'; binding.pry
   end
   
   def split_keys(key)
@@ -26,6 +30,7 @@ class Enigma
     split_key_hash[:C] = keys[2] + keys[3]
     split_key_hash[:D] = keys[3] + keys[4]
     split_key_hash.values
+    #returns strings of values
   end
 
   def generate_offset(date)
@@ -34,6 +39,7 @@ class Enigma
       number.to_i
     end
     offsets
+    #returns integers
   end
 
   def shift(keys, offsets)
@@ -43,9 +49,33 @@ class Enigma
     shift_hash[:C] = keys[2].to_i + offsets[2]
     shift_hash[:D] = keys[3].to_i + offsets[3]
     shift_hash
+    #returns hash with integers
   end
 
-  def encrpyt
+  def encrypt(string, option_key, option_date) 
+  # def encrypt(string, option_key = generate_keys, option_date = Date.now) 
+    given_key = split_keys(option_key)
+    given_date = generate_offset(option_date)
+    shift_test = shift(given_key, given_date)
+   
+    shift_numbers = shift_test.values
+    shifted_letter_collector = ''
+    string.split('').each do |letter|
+      value_shift = characters.find_index(letter) + shift_numbers.first
+      while value_shift > characters.length 
+        value_shift = value_shift - characters.length
+      end
+      the_shift = characters[value_shift]
+    
+      shifted_letter_collector += the_shift 
+      shift_numbers.rotate!
+
+      # encrypt_hash = {}
+
+      # encrypt_hash[:encryption]: 
+
+    end
+    shifted_letter_collector
   end
 
   def decrypt
