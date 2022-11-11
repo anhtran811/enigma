@@ -81,6 +81,11 @@ class Enigma
     encryption_hash
   end
 
-  def decrypt
+  def decrypted_string(string, option_key, option_date)
+    
+  end
+
+  def decrypt(string, option_key, option_date)
+   
   end
 end
