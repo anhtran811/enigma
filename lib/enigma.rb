@@ -52,13 +52,11 @@ class Enigma
     #returns hash with integers
   end
 
-  def encrypt(string, option_key, option_date) 
-  # def encrypt(string, option_key = generate_keys, option_date = Date.now) 
+  def encrypted_string(string, option_key, option_date)
     given_key = split_keys(option_key)
     given_date = generate_offset(option_date)
-    shift_test = shift(given_key, given_date)
-   
-    shift_numbers = shift_test.values
+
+    shift_numbers = shift(given_key, given_date).values 
     shifted_letter_collector = ''
     string.split('').each do |letter|
       value_shift = characters.find_index(letter) + shift_numbers.first
@@ -71,9 +69,13 @@ class Enigma
       shift_numbers.rotate!
     end
     shifted_letter_collector
+  end
+
+  def encrypt(string, option_key, option_date) 
+  # def encrypt(string, option_key = generate_keys, option_date = Date.now) 
     encryption_hash = {}
   
-    encryption_hash[:encryption] = shifted_letter_collector
+    encryption_hash[:encryption] = encrypted_string(string, option_key, option_date)
     encryption_hash[:key] = option_key
     encryption_hash[:date] = option_date
     encryption_hash
