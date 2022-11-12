@@ -43,6 +43,7 @@ RSpec.describe Enigma do
   it 'can create an encrypted string when given a key and date' do
     expect(enigma.encrypted_string('hello world', '02715', '040895')).to eq('keder ohulw')
     expect(enigma.encrypted_string('heLlo woRld', '02715', '040895')).to eq('keder ohulw')
+    expect(enigma.encrypted_string('heLlo! woRld!', '02715', '040895')).to eq('keder! ohulw!')
   end
 
   it 'can encrpyt a message with a key and date' do
