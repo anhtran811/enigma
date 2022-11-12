@@ -40,11 +40,11 @@ RSpec.describe Enigma do
     })
   end
 
-  xit 'can create an encrypted string when given a key and date' do
+  it 'can create an encrypted string when given a key and date' do
     expect(enigma.encrypted_string('hello world', '02715', '040895')).to eq('keder ohulw')
   end
 
-  xit 'can encrpyt a message with a key and date' do
+  it 'can encrpyt a message with a key and date' do
     expect(enigma.encrypt('hello world', '02715', '040895')).to eq(
       {
           encryption: 'keder ohulw',
@@ -66,13 +66,11 @@ RSpec.describe Enigma do
         })
   end
 
-  it 'can use todays date if none is provided' do
-    allow(enigma).to receive(:date).and_return(Date.today)
-    require 'pry'; binding.pry
-   
-    expect(enigma.date).to eq('111122')
+  it 'can test for todays date formatted by ddmmyy' do
+    expected_date = Date.today.strftime('%m%d%y')
+    expect(enigma.date).to eq(expected_date)
   end
-
+ 
   xit 'can encrypt a message with a key (uses todays date)' do
     expect(enigma.encrypt('hello world', '02715')).to eq({})
   end
