@@ -60,19 +60,27 @@ RSpec.describe Enigma do
   it 'can decrypt a message with a key and date' do
     expect(enigma.decrypt('keder ohulw', '02715', '040895')).to eq(
       {
-          decryption: 'hello world',
-          key: '02715',
-          date: '040895'
-        })
+        decryption: 'hello world',
+        key: '02715',
+        date: '040895'
+      })
   end
 
   it 'can test for todays date formatted by ddmmyy' do
-    expected_date = Date.today.strftime('%m%d%y')
+    expected_date = Date.today.strftime('%d%m%y')
     expect(enigma.date).to eq(expected_date)
   end
  
-  xit 'can encrypt a message with a key (uses todays date)' do
-    expect(enigma.encrypt('hello world', '02715')).to eq({})
+  it 'can encrypt a message with a key (uses todays date)' do
+    allow(enigma).to receive(:date).and_return('121122')
+
+    expect(enigma.encrypt('hello world', '02715')).to be_a(Hash)
+    expect(enigma.encrypt('hello world', '02715')).to eq(
+      {
+        encryption: 'rmjdyhugatb',
+        key: '02715',
+        date: '121122'
+      })
   end
 
   xit 'can decrypt a message with a key (uses todays date)' do
