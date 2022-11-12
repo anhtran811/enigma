@@ -66,6 +66,13 @@ RSpec.describe Enigma do
         })
   end
 
+  it 'can use todays date if none is provided' do
+    allow(enigma).to receive(:date).and_return(Date.today)
+    require 'pry'; binding.pry
+   
+    expect(enigma.date).to eq('111122')
+  end
+
   xit 'can encrypt a message with a key (uses todays date)' do
     expect(enigma.encrypt('hello world', '02715')).to eq({})
   end
