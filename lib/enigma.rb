@@ -52,7 +52,7 @@ class Enigma
     #returns hash with integers
   end
 
-  def encrypted_string(string, option_key = generate_keys, option_date)
+  def encrypted_string(string, option_key = generate_keys, option_date = date)
     given_key = split_keys(option_key)
     given_date = generate_offset(option_date)
 
@@ -71,7 +71,7 @@ class Enigma
     shifted_letter_collector
   end
 
-  def encrypt(string, option_key = generate_keys, option_date) 
+  def encrypt(string, option_key = generate_keys, option_date = date) 
   # def encrypt(string, option_key = generate_keys, option_date = Date.now) 
     encryption_hash = {}
   
@@ -81,7 +81,7 @@ class Enigma
     encryption_hash
   end
 
-  def decrypted_string(string, option_key = generate_keys, option_date)
+  def decrypted_string(string, option_key = generate_keys, option_date = date)
     given_key = split_keys(option_key)
     given_date = generate_offset(option_date)
 
@@ -100,11 +100,15 @@ class Enigma
     shifted_letter_collector
   end
 
-  def decrypt(string, option_key = generate_keys, option_date)
+  def decrypt(string, option_key = generate_keys, option_date = date)
     decryption_hash = {}
     decryption_hash[:decryption] = decrypted_string(string, option_key, option_date)
     decryption_hash[:key] = option_key
     decryption_hash[:date] = option_date
     decryption_hash
+  end
+
+  def date
+    Date.today.strftime('%m%d%y')
   end
 end
