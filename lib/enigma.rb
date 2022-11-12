@@ -81,7 +81,7 @@ class Enigma
     encryption_hash
   end
 
-  def decrypted_string(string, option_key = generate_keys, option_date = date)
+  def decrypted_string(string, option_key, option_date = date)
     given_key = split_keys(option_key)
     given_date = generate_offset(option_date)
 
@@ -100,7 +100,7 @@ class Enigma
     shifted_letter_collector
   end
 
-  def decrypt(string, option_key = generate_keys, option_date = date)
+  def decrypt(string, option_key, option_date = date)
     decryption_hash = {}
     decryption_hash[:decryption] = decrypted_string(string, option_key, option_date)
     decryption_hash[:key] = option_key
