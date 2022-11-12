@@ -55,52 +55,57 @@ class Enigma
   def encrypted_string(string, option_key = generate_keys, option_date = date)
     given_key = split_keys(option_key)
     given_date = generate_offset(option_date)
-
+    
     shift_numbers = shift(given_key, given_date).values 
     shifted_letter_collector = ''
-    string.split('').each do |letter|
-      value_shift = characters.find_index(letter) + shift_numbers.first
-      while value_shift > characters.length 
-        value_shift = value_shift - characters.length
+    string.downcase.split('').each do |letter|
+      if !characters.include?(letter)
+        shifted_letter_collector += letter
+      else
+        value_shift = characters.find_index(letter) + shift_numbers.first
+        while value_shift >= characters.length
+          value_shift -= characters.length
+        end
+        the_shift = characters[value_shift]
+        shifted_letter_collector += the_shift 
+        shift_numbers.rotate!
       end
-      the_shift = characters[value_shift]
-    
-      shifted_letter_collector += the_shift 
-      shift_numbers.rotate!
     end
     shifted_letter_collector
   end
 
-  def encrypt(string, option_key = generate_keys, option_date = date) 
-  # def encrypt(string, option_key = generate_keys, option_date = Date.now) 
+  def encrypt(string, option_key = generate_keys, option_date = date)
     encryption_hash = {}
-  
     encryption_hash[:encryption] = encrypted_string(string, option_key, option_date)
     encryption_hash[:key] = option_key
     encryption_hash[:date] = option_date
     encryption_hash
   end
 
-  def decrypted_string(string, option_key = generate_keys, option_date = date)
+  def decrypted_string(string, option_key, option_date = date)
     given_key = split_keys(option_key)
     given_date = generate_offset(option_date)
 
     shift_numbers = shift(given_key, given_date).values 
     shifted_letter_collector = ''
-    string.split('').each do |letter|
-      value_shift = characters.find_index(letter) - shift_numbers.first
-      while value_shift < 0
-        value_shift += characters.length
+    string.downcase.split('').each do |letter|
+      if !characters.include?(letter)
+        shifted_letter_collector += letter
+      else
+        value_shift = characters.find_index(letter) - shift_numbers.first
+        while value_shift < 0
+          value_shift += characters.length
+        end
+        the_shift = characters[value_shift]
+      
+        shifted_letter_collector += the_shift 
+        shift_numbers.rotate!
       end
-      the_shift = characters[value_shift]
-    
-      shifted_letter_collector += the_shift 
-      shift_numbers.rotate!
     end
     shifted_letter_collector
   end
 
-  def decrypt(string, option_key = generate_keys, option_date = date)
+  def decrypt(string, option_key, option_date = date)
     decryption_hash = {}
     decryption_hash[:decryption] = decrypted_string(string, option_key, option_date)
     decryption_hash[:key] = option_key
@@ -109,6 +114,6 @@ class Enigma
   end
 
   def date
-    Date.today.strftime('%m%d%y')
+    Date.today.strftime('%d%m%y')
   end
 end
