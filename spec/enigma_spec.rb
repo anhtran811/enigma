@@ -42,8 +42,8 @@ RSpec.describe Enigma do
 
   it 'can create an encrypted string when given a key and date' do
     expect(enigma.encrypted_string('hello world', '02715', '040895')).to eq('keder ohulw')
-    expect(enigma.encrypted_string('heLlo woRld', '02715', '040895')).to eq('keder ohulw')
-    expect(enigma.encrypted_string('heLlo! woRld!', '02715', '040895')).to eq('keder! ohulw!')
+    expect(enigma.encrypted_string('hello woRld', '02715', '040895')).to eq('keder ohulw')
+    expect(enigma.encrypted_string('heLlo, woRld!', '02715', '040895')).to eq('keder, ohulw!')
   end
 
   it 'can encrpyt a message with a key and date' do
@@ -58,7 +58,7 @@ RSpec.describe Enigma do
   it 'can create a decrypted string when given a key and date' do
     expect(enigma.decrypted_string('keder ohulw', '02715', '040895')).to eq('hello world')
     expect(enigma.decrypted_string('keDer ohUlw', '02715', '040895')).to eq('hello world')
-    expect(enigma.decrypted_string('keder! ohulw!', '02715', '040895')).to eq('hello! world!')
+    expect(enigma.decrypted_string('keder@ ohulw!', '02715', '040895')).to eq('hello@ world!')
   end
 
   it 'can decrypt a message with a key and date' do
@@ -78,9 +78,9 @@ RSpec.describe Enigma do
   it 'can encrypt a message with a key (uses todays date)' do
     allow(enigma).to receive(:date).and_return('121122')
 
-    expect(enigma.encrypt('hello world', '02715')).to eq(
+    expect(enigma.encrypt('heLlo woRld!', '02715')).to eq(
       {
-        encryption: 'rmjdyhugatb',
+        encryption: 'rmjdyhugatb!',
         key: '02715',
         date: '121122'
       })
