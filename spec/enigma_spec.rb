@@ -74,7 +74,6 @@ RSpec.describe Enigma do
   it 'can encrypt a message with a key (uses todays date)' do
     allow(enigma).to receive(:date).and_return('121122')
 
-    expect(enigma.encrypt('hello world', '02715')).to be_a(Hash)
     expect(enigma.encrypt('hello world', '02715')).to eq(
       {
         encryption: 'rmjdyhugatb',
@@ -83,8 +82,15 @@ RSpec.describe Enigma do
       })
   end
 
-  xit 'can decrypt a message with a key (uses todays date)' do
-    expect(enigma.decrypt(encrypted[:encryption], '02715')).to eq({})
+  it 'can decrypt a message with a key (uses todays date)' do
+    allow(enigma).to receive(:date).and_return('121122')
+ 
+    expect(enigma.decrypt('rmjdyhugatb', '02715')).to eq(
+      {
+        decryption: 'hello world',
+        key: '02715',
+        date: '121122'
+      })
   end
 
   xit 'can encrypt a message (generates random key and uses todays date)' do

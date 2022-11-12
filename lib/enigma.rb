@@ -60,7 +60,6 @@ class Enigma
     shifted_letter_collector = ''
     string.split('').each do |letter|
       value_shift = characters.find_index(letter) + shift_numbers.first
-      # require 'pry'; binding.pry
       while value_shift >= characters.length
         value_shift -= characters.length
       end
@@ -71,8 +70,7 @@ class Enigma
     shifted_letter_collector
   end
 
-  def encrypt(string, option_key = generate_keys, option_date = date) 
-  # def encrypt(string, option_key = generate_keys, option_date = Date.now) 
+  def encrypt(string, option_key = generate_keys, option_date = date)
     encryption_hash = {}
   
     encryption_hash[:encryption] = encrypted_string(string, option_key, option_date)
