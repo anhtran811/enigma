@@ -82,7 +82,22 @@ class Enigma
   end
 
   def decrypted_string(string, option_key, option_date)
+    given_key = split_keys(option_key)
+    given_date = generate_offset(option_date)
+
+    shift_numbers = shift(given_key, given_date).values 
+    shifted_letter_collector = ''
+    string.split('').each do |letter|
+      value_shift = characters.find_index(letter) - shift_numbers.first
+      while value_shift < 0
+        value_shift += characters.length
+      end
+      the_shift = characters[value_shift]
     
+      shifted_letter_collector += the_shift 
+      shift_numbers.rotate!
+    end
+    shifted_letter_collector
   end
 
   def decrypt(string, option_key, option_date)

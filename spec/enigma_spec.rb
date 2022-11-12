@@ -40,11 +40,11 @@ RSpec.describe Enigma do
     })
   end
 
-  it 'can create an encrypted string when given a key and date' do
+  xit 'can create an encrypted string when given a key and date' do
     expect(enigma.encrypted_string('hello world', '02715', '040895')).to eq('keder ohulw')
   end
 
-  it 'can encrpyt a message with a key and date' do
+  xit 'can encrpyt a message with a key and date' do
     expect(enigma.encrypt('hello world', '02715', '040895')).to eq(
       {
           encryption: 'keder ohulw',
@@ -54,7 +54,7 @@ RSpec.describe Enigma do
   end
 
   it 'can create a decrypted string when given a key and date' do
-    expect(enigma.decrypted_string('hello world', '02715', '040895')).to eq('hello world')
+    expect(enigma.decrypted_string('keder ohulw', '02715', '040895')).to eq('hello world')
   end
 
   it 'can decrypt a message with a key and date' do
