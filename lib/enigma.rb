@@ -58,7 +58,7 @@ class Enigma
     
     shift_numbers = shift(given_key, given_date).values 
     shifted_letter_collector = ''
-    string.split('').each do |letter|
+    string.downcase.split('').each do |letter|
       value_shift = characters.find_index(letter) + shift_numbers.first
       while value_shift >= characters.length
         value_shift -= characters.length
@@ -86,7 +86,7 @@ class Enigma
 
     shift_numbers = shift(given_key, given_date).values 
     shifted_letter_collector = ''
-    string.split('').each do |letter|
+    string.downcase.split('').each do |letter|
       value_shift = characters.find_index(letter) - shift_numbers.first
       while value_shift < 0
         value_shift += characters.length
