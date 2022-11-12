@@ -101,6 +101,10 @@ class Enigma
   end
 
   def decrypt(string, option_key, option_date)
-   
+    decryption_hash = {}
+    decryption_hash[:decryption] = decrypted_string(string, option_key, option_date)
+    decryption_hash[:key] = option_key
+    decryption_hash[:date] = option_date
+    decryption_hash
   end
 end
