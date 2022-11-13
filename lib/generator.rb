@@ -1,14 +1,14 @@
 class Generator
 
   attr_reader :numbers
-              :characters
+              :letters
 
   def initialize
     @numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-    @characters = characters
+    @letters = letters
   end
 
-  def characters
+  def letters
     set = ('a'..'z').to_a
     set.push(' ')
   end
@@ -56,21 +56,21 @@ class Generator
     given_date = generate_offset(option_date)
     
     shift_numbers = shift(given_key, given_date).values 
-    shifted_letter_collector = ''
-    string.downcase.split('').each do |letter|
-      if !characters.include?(letter)
-        shifted_letter_collector += letter
+    shifted_character_collector = ''
+    string.downcase.split('').each do |character|
+      if !letters.include?(character)
+        shifted_character_collector += character
       else
-        value_shift = characters.find_index(letter) + shift_numbers.first
-        while value_shift >= characters.length
-          value_shift -= characters.length
+        value_shift = letters.find_index(character) + shift_numbers.first
+        while value_shift >= letters.length
+          value_shift -= letters.length
         end
-        the_shift = characters[value_shift]
-        shifted_letter_collector += the_shift 
+        the_shift = letters[value_shift]
+        shifted_character_collector += the_shift 
         shift_numbers.rotate!
       end
     end
-    shifted_letter_collector
+    shifted_character_collector
   end
 
   def decrypted_string(string, option_key, option_date = date)
@@ -78,22 +78,22 @@ class Generator
     given_date = generate_offset(option_date)
 
     shift_numbers = shift(given_key, given_date).values 
-    shifted_letter_collector = ''
-    string.downcase.split('').each do |letter|
-      if !characters.include?(letter)
-        shifted_letter_collector += letter
+    shifted_character_collector = ''
+    string.downcase.split('').each do |character|
+      if !letters.include?(character)
+        shifted_character_collector += character
       else
-        value_shift = characters.find_index(letter) - shift_numbers.first
+        value_shift = letters.find_index(character) - shift_numbers.first
         while value_shift < 0
-          value_shift += characters.length
+          value_shift += letters.length
         end
-        the_shift = characters[value_shift]
+        the_shift = letters[value_shift]
       
-        shifted_letter_collector += the_shift 
+        shifted_character_collector += the_shift 
         shift_numbers.rotate!
       end
     end
-    shifted_letter_collector
+    shifted_character_collector
   end 
   
   def date
