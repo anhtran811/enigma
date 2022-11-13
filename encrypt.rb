@@ -7,7 +7,7 @@ encryption = File.open(ARGV[0], 'r')
 message = encryption.read
 encryption.close
 
-encrypted_message = enigma.encrypt(message.chomp)
+encrypted_message = enigma.encrypt(message.chomp, '02715')
 
 encryption = File.open(ARGV[1], 'w')
 encryption.write(encrypted_message[:encryption])
