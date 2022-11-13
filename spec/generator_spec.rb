@@ -42,70 +42,19 @@ RSpec.describe Generator do
 
   it 'can create an encrypted string when given a key and date' do
     expect(generator.encrypted_string('hello world', '02715', '040895')).to eq('keder ohulw')
-    expect(generator.encrypted_string('hello woRld', '02715', '040895')).to eq('keder ohulw')
+    expect(generator.encrypted_string('he!!o woRld', '02715', '040895')).to eq('ke!!gtzojeg')
     expect(generator.encrypted_string('heLlo, woRld!', '02715', '040895')).to eq('keder, ohulw!')
   end
-
-  # it 'can encrpyt a message with a key and date' do
-  #   expect(generator.encrypt('hello world', '02715', '040895')).to eq(
-  #     {
-  #         encryption: 'keder ohulw',
-  #         key: '02715',
-  #         date: '040895'
-  #       })
-  # end
 
   it 'can create a decrypted string when given a key and date' do
     expect(generator.decrypted_string('keder ohulw', '02715', '040895')).to eq('hello world')
     expect(generator.decrypted_string('keDer ohUlw', '02715', '040895')).to eq('hello world')
     expect(generator.decrypted_string('keder@ ohulw!', '02715', '040895')).to eq('hello@ world!')
+    expect(generator.decrypted_string('ke@er@ ohulw!', '02715', '040895')).to eq('he@my@xopaiw!')
   end
 
-  # it 'can decrypt a message with a key and date' do
-  #   expect(generator.decrypt('keder ohulw', '02715', '040895')).to eq(
-  #     {
-  #       decryption: 'hello world',
-  #       key: '02715',
-  #       date: '040895'
-  #     })
-  # end
-
-  # it 'can test for todays date formatted by ddmmyy' do
-  #   expected_date = Date.today.strftime('%d%m%y')
-  #   expect(generator.date).to eq(expected_date)
-  # end
- 
-  # it 'can encrypt a message with a key (uses todays date)' do
-  #   allow(generator).to receive(:date).and_return('121122')
-
-  #   expect(generator.encrypt('heLlo woRld!', '02715')).to eq(
-  #     {
-  #       encryption: 'rmjdyhugatb!',
-  #       key: '02715',
-  #       date: '121122'
-  #     })
-  # end
-
-  # it 'can decrypt a message with a key (uses todays date)' do
-  #   allow(generator).to receive(:date).and_return('121122')
- 
-  #   expect(generator.decrypt('rmjdyhugatb', '02715')).to eq(
-  #     {
-  #       decryption: 'hello world',
-  #       key: '02715',
-  #       date: '121122'
-  #     })
-  # end
-
-  # it 'can encrypt a message (generates random key and uses todays date)' do
-  #   allow(generator).to receive(:date).and_return('121122')
-  #   allow(generator).to receive(:generate_keys).and_return('08117')
-
-  #   expect(generator.encrypt('hello world')).to eq(
-  #     {
-  #       encryption: 'xmdfdhoigtw',
-  #       key: '08117',
-  #       date: '121122'
-  #   })
-  # end
+  it 'can test for todays date formatted by ddmmyy' do
+    expected_date = Date.today.strftime('%d%m%y')
+    expect(generator.date).to eq(expected_date)
+  end
 end

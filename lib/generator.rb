@@ -22,7 +22,7 @@ class Generator
   
   def split_keys(key)
     split_key_hash = {}
-    # generate_keys.split('')
+    generate_keys.split('')
     keys = key.split('')
     split_key_hash[:A] = keys[0] + keys[1]
     split_key_hash[:B] = keys[1] + keys[2]
@@ -94,6 +94,10 @@ class Generator
       end
     end
     shifted_letter_collector
+  end 
+  
+  def date
+    Date.today.strftime('%d%m%y')
   end
 
 end
