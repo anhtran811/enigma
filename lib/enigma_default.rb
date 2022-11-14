@@ -1,4 +1,4 @@
-class Generator
+class EnigmaDefault
   attr_reader :letters
 
   def initialize

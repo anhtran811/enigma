@@ -1,11 +1,10 @@
 require 'date'
-require './lib/generator'
 require './lib/shift'
 
 module Cipher
   def encrypted_string(string, option_key = generate_keys, option_date = date)
     shift = Shift.new(option_key, option_date)
-    shift_numbers = shift.shift.values
+    shift_numbers = shift.generate_shift.values
     shifted_character_collector = '' 
     string.downcase.split('').each do |character|
       if !letters.include?(character)
@@ -25,7 +24,7 @@ module Cipher
 
   def decrypted_string(string, option_key, option_date = date)
     shift = Shift.new(option_key, option_date)
-    shift_numbers = shift.shift.values
+    shift_numbers = shift.generate_shift.values
     shifted_character_collector = ''
     string.downcase.split('').each do |character|
       if !letters.include?(character)

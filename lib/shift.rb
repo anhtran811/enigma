@@ -5,7 +5,7 @@ class Shift
     @shift_hash = {}
   end
 
-  def shift
+  def generate_shift
     @shift_hash[:A] = @keys[0].to_i + @offsets[0]
     @shift_hash[:B] = @keys[1].to_i + @offsets[1]
     @shift_hash[:C] = @keys[2].to_i + @offsets[2]

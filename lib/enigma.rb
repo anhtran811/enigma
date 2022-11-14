@@ -1,7 +1,7 @@
 require 'date'
-require './lib/generator'
+require './lib/enigma_default'
 
-class Enigma < Generator
+class Enigma < EnigmaDefault
   include Cipher
 
   def encrypt(string, option_key = generate_keys, option_date = date)
