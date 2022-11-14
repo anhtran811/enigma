@@ -1,5 +1,7 @@
 require 'date'
 require './lib/generator'
+require './lib/shift'
+
 
 module Cipher
 
@@ -7,8 +9,9 @@ module Cipher
     given_key = split_keys(option_key)
     given_date = generate_offset(option_date)
     
-    shift_numbers = shift(given_key, given_date).values 
-    shifted_character_collector = ''
+    shift = Shift.new(given_key, given_date)
+    shift_numbers = shift.shift.values
+    shifted_character_collector = '' 
     string.downcase.split('').each do |character|
       if !letters.include?(character)
         shifted_character_collector += character
@@ -29,7 +32,8 @@ module Cipher
     given_key = split_keys(option_key)
     given_date = generate_offset(option_date)
 
-    shift_numbers = shift(given_key, given_date).values 
+    shift = Shift.new(given_key, given_date)
+    shift_numbers = shift.shift.values
     shifted_character_collector = ''
     string.downcase.split('').each do |character|
       if !letters.include?(character)
@@ -40,12 +44,10 @@ module Cipher
           value_shift += letters.length
         end
         the_shift = letters[value_shift]
-      
         shifted_character_collector += the_shift 
         shift_numbers.rotate!
       end
     end
     shifted_character_collector
   end 
-
 end

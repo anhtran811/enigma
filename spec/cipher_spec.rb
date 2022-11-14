@@ -2,6 +2,7 @@ require 'date'
 require './lib/cipher'
 require './lib/enigma'
 require './lib/generator'
+require './lib/shift'
 
 RSpec.describe Cipher do
   let!(:enigma) {Enigma.new}

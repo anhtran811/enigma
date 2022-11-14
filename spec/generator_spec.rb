@@ -31,15 +31,6 @@ RSpec.describe Generator do
     expect(generator.generate_offset('040895')).to eq([1, 0, 2, 5])
   end
 
-  it 'can create a shift' do
-    expect(generator.shift(['02', '27', '71', '15'], [1, 0, 2, 5])).to eq({
-      A: 3,
-      B: 27,
-      C: 73,
-      D: 20
-    })
-  end
-
   it 'can test for todays date formatted by ddmmyy' do
     expected_date = Date.today.strftime('%d%m%y')
     expect(generator.date).to eq(expected_date)
