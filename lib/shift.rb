@@ -31,13 +31,13 @@ class Shift
     split_key_hash.values
   end
 
-   def generate_rand_num
-    rand_num = ''
-    number = Random.new
-    5.times do
-      rand_num += number.rand(0..9).to_s
-    end
-    rand_num
-  end
+  #  def generate_rand_num
+  #   rand_num = ''
+  #   number = Random.new
+  #   5.times do
+  #     rand_num += number.rand(0..9).to_s
+  #   end
+  #   rand_num
+  # end
 
 end

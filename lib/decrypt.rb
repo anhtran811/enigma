@@ -1,3 +1,5 @@
+# ruby ./lib/decrypt.rb encrypted.txt decrypted.txt generated_random_number generated_date_as_string
+
 require './lib/enigma'
 require 'date'
 
