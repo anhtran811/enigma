@@ -14,17 +14,16 @@ class Shift
   end
 
   def generate_offset(date)
-    date_squared_last_four_numbers = ((date.to_i)**2).to_s[-4..-1]
-    offsets = date_squared_last_four_numbers.split('').map do |number|
+    #squaring the date as an integer, and returning last 4 numbers as an array
+    last_four = ((date.to_i)**2).to_s[-4..-1].split('')
+    last_four.map do |number|
       number.to_i
     end
-    offsets
   end
 
   def split_keys(rand_num)
     split_key_hash = {}
-    generate_rand_num.split('') #review this
-    keys = rand_num.split('') #review this
+    keys = rand_num.split('') 
     split_key_hash[:A] = keys[0] + keys[1]
     split_key_hash[:B] = keys[1] + keys[2]
     split_key_hash[:C] = keys[2] + keys[3]
