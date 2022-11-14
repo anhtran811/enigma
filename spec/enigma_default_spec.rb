@@ -14,6 +14,6 @@ RSpec.describe EnigmaDefault do
 
   it 'can test for todays date formatted by ddmmyy' do
     expected_date = Date.today.strftime('%d%m%y')
-    expect(enigma_default.date).to eq(expected_date)
+    expect(enigma_default.formatted_date).to eq(expected_date)
   end
 end

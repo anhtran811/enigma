@@ -10,7 +10,7 @@ class EnigmaDefault
     set.push(' ')
   end
 
-  def date
+  def formatted_date
     Date.today.strftime('%d%m%y')
   end
 end

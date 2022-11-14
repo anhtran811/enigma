@@ -4,19 +4,19 @@ require './lib/enigma_default'
 class Enigma < EnigmaDefault
   include Cipher
 
-  def encrypt(string, option_key = generate_keys, option_date = date)
+  def encrypt(string, rand_num = generate_rand_num, date = formatted_date)
     encryption_hash = {}
-    encryption_hash[:encryption] = encrypted_string(string, option_key, option_date)
-    encryption_hash[:key] = option_key
-    encryption_hash[:date] = option_date
+    encryption_hash[:encryption] = encrypted_string(string, rand_num, date)
+    encryption_hash[:key] = rand_num
+    encryption_hash[:date] = date
     encryption_hash
   end
 
-  def decrypt(string, option_key, option_date = date)
+  def decrypt(string, rand_num, date = formatted_date)
     decryption_hash = {}
-    decryption_hash[:decryption] = decrypted_string(string, option_key, option_date)
-    decryption_hash[:key] = option_key
-    decryption_hash[:date] = option_date
+    decryption_hash[:decryption] = decrypted_string(string, rand_num, date)
+    decryption_hash[:key] = rand_num
+    decryption_hash[:date] = date
     decryption_hash
   end
 end

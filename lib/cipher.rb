@@ -2,11 +2,11 @@ require 'date'
 require './lib/shift'
 
 module Cipher
-  def encrypted_string(string, option_key = generate_keys, option_date = date)
-    shift = Shift.new(option_key, option_date)
+  def encrypted_string(message, rand_num, date)
+    shift = Shift.new(rand_num, date)
     shift_numbers = shift.generate_shift.values
     shifted_character_collector = '' 
-    string.downcase.split('').each do |character|
+    message.downcase.split('').each do |character|
       if !letters.include?(character)
         shifted_character_collector += character
       else
@@ -22,11 +22,11 @@ module Cipher
     shifted_character_collector
   end
 
-  def decrypted_string(string, option_key, option_date = date)
-    shift = Shift.new(option_key, option_date)
+  def decrypted_string(message, rand_num, date)
+    shift = Shift.new(rand_num, date)
     shift_numbers = shift.generate_shift.values
     shifted_character_collector = ''
-    string.downcase.split('').each do |character|
+    message.downcase.split('').each do |character|
       if !letters.include?(character)
         shifted_character_collector += character
       else
