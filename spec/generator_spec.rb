@@ -40,19 +40,6 @@ RSpec.describe Generator do
     })
   end
 
-  it 'can create an encrypted string when given a key and date' do
-    expect(generator.encrypted_string('hello world', '02715', '040895')).to eq('keder ohulw')
-    expect(generator.encrypted_string('he!!o woRld', '02715', '040895')).to eq('ke!!gtzojeg')
-    expect(generator.encrypted_string('heLlo, woRld!', '02715', '040895')).to eq('keder, ohulw!')
-  end
-
-  it 'can create a decrypted string when given a key and date' do
-    expect(generator.decrypted_string('keder ohulw', '02715', '040895')).to eq('hello world')
-    expect(generator.decrypted_string('keDer ohUlw', '02715', '040895')).to eq('hello world')
-    expect(generator.decrypted_string('keder@ ohulw!', '02715', '040895')).to eq('hello@ world!')
-    expect(generator.decrypted_string('ke@er@ ohulw!', '02715', '040895')).to eq('he@my@xopaiw!')
-  end
-
   it 'can test for todays date formatted by ddmmyy' do
     expected_date = Date.today.strftime('%d%m%y')
     expect(generator.date).to eq(expected_date)

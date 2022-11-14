@@ -2,6 +2,7 @@ require 'date'
 require './lib/generator'
 
 class Enigma < Generator
+  include Cipher
 
   def encrypt(string, option_key = generate_keys, option_date = date)
     encryption_hash = {}
