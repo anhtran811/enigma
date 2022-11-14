@@ -1,10 +1,7 @@
 class Generator
-
-  attr_reader :numbers
-              :letters
+  attr_reader :letters
 
   def initialize
-    @numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     @letters = letters
   end
 
@@ -14,10 +11,12 @@ class Generator
   end
 
   def generate_keys
-    # regex? -> look at number set
-    # or range
-    # or rand
-    @numbers.sample(5).join
+    key = ''
+    number = Random.new
+    5.times do
+      key += number.rand(0..9).to_s
+    end
+    key
   end
   
   def split_keys(key)
@@ -51,5 +50,4 @@ class Generator
   def date
     Date.today.strftime('%d%m%y')
   end
-
 end

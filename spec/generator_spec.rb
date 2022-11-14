@@ -15,7 +15,7 @@ RSpec.describe Generator do
   it 'can generate a random five digit key' do
     key = generator.generate_keys.split('')
     key.each do |number|
-      expect(generator.numbers).to include(number)
+      expect(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']).to include(number)
     end
     expect(key.count).to eq(5)
     expect(generator.generate_keys.class).to eq(String)
