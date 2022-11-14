@@ -12,25 +12,6 @@ RSpec.describe Generator do
     expect(generator.letters).to eq(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '])
   end
 
-  it 'can generate a random five digit key' do
-    key = generator.generate_keys.split('')
-    key.each do |number|
-      expect(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']).to include(number)
-    end
-    expect(key.count).to eq(5)
-    expect(generator.generate_keys.class).to eq(String)
-  end
-
-  it 'can split the five digit key' do
-    allow(generator).to receive(:generate_keys).and_return('02715')
-
-    expect(generator.split_keys('02715')).to eq(['02', '27', '71', '15'])
-  end
-
-  it 'can generate an offset from a given date' do
-    expect(generator.generate_offset('040895')).to eq([1, 0, 2, 5])
-  end
-
   it 'can test for todays date formatted by ddmmyy' do
     expected_date = Date.today.strftime('%d%m%y')
     expect(generator.date).to eq(expected_date)
