@@ -1,6 +1,6 @@
 require 'date'
-require 'enigma_default'
-require 'cipher'
+require './lib/enigma_default'
+require './lib/cipher'
 
 class Enigma < EnigmaDefault
   include Cipher

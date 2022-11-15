@@ -1,4 +1,5 @@
 require 'date'
+require './lib/shift'
 
 module Cipher
   def encrypted_string(message, rand_num, date)
