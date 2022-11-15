@@ -10,10 +10,6 @@ class EnigmaDefault
     set.push(' ')
   end
 
-  def formatted_date
-    Date.today.strftime('%d%m%y')
-  end
-
   def generate_rand_num
     rand_num = ''
     number = Random.new
@@ -21,5 +17,9 @@ class EnigmaDefault
       rand_num += number.rand(0..9).to_s
     end
     rand_num
+  end
+
+  def formatted_date
+    Date.today.strftime('%d%m%y')
   end
 end

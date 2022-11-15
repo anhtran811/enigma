@@ -12,11 +12,6 @@ RSpec.describe EnigmaDefault do
     expect(enigma_default.letters).to eq(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '])
   end
 
-  it 'can test for todays date formatted by ddmmyy' do
-    expected_date = Date.today.strftime('%d%m%y')
-    expect(enigma_default.formatted_date).to eq(expected_date)
-  end
-
   it 'can generate a random five digit key' do
     key = enigma_default.generate_rand_num.split('')
     key.each do |number|
@@ -24,5 +19,10 @@ RSpec.describe EnigmaDefault do
     end
     expect(key.count).to eq(5)
     expect(enigma_default.generate_rand_num.class).to eq(String)
+  end
+ 
+  it 'can test for todays date formatted by ddmmyy' do
+    expected_date = Date.today.strftime('%d%m%y')
+    expect(enigma_default.formatted_date).to eq(expected_date)
   end
 end
