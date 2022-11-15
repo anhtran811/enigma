@@ -17,12 +17,12 @@ RSpec.describe EnigmaDefault do
     expect(enigma_default.formatted_date).to eq(expected_date)
   end
 
-  # it 'can generate a random five digit key' do
-#   key = generator.generate_keys.split('')
-#   key.each do |number|
-#     expect(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']).to include(number)
-#   end
-#   expect(key.count).to eq(5)
-#   expect(generator.generate_keys.class).to eq(String)
-# end
+  it 'can generate a random five digit key' do
+    key = enigma_default.generate_rand_num.split('')
+    key.each do |number|
+      expect(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']).to include(number)
+    end
+    expect(key.count).to eq(5)
+    expect(enigma_default.generate_rand_num.class).to eq(String)
+  end
 end
